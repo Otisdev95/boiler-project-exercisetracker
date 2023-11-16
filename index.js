@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 });
 
 const users = [];
+const exercise = [];
 
 function generateUserId() {
   return Math.random().toString(36).substring(2, 10);
@@ -35,6 +36,25 @@ users.push(newUser);
 
 app.get('/api/users', (req, res) => {
   return res.json(users);
+});
+
+app.post('/api/users/:_id/exercises', (req, res) => {
+  const date = new Date();
+  const duration = getTime();
+
+  const formData = {
+    description: description,
+    duration: duration,
+    date: date
+  }
+
+  exercise.push(formData);
+
+  return res.json( user, {
+    description: description,
+    duration: duration,
+    date: Date.now()
+  });
 });
 
 
