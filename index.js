@@ -14,7 +14,6 @@ app.get('/', (req, res) => {
 });
 
 const users = [];
-const exercises = [];
 
 function generateUserId() {
   return Math.random().toString(36).substring(2, 10);
