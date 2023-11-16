@@ -36,3 +36,7 @@ user.push(newUser);
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
+
+function generateUserId() {
+  return Math.random().toString(36).substring(2, 10);
+}
