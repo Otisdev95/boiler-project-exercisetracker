@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 });
 
 const users = [];
-const exercise = [];
+const exercises = [];
 
 function generateUserId() {
   return Math.random().toString(36).substring(2, 10);
@@ -39,25 +39,32 @@ app.get('/api/users', (req, res) => {
 });
 
 app.post('/api/users/:_id/exercises', (req, res) => {
-  const date = new Date();
-  const duration = getTime();
+  const userId = req.params._id;
+  const { description, duration } = req.bosy;
 
-  const formData = {
-    description: description,
-    duration: duration,
-    date: date
+  if (!description || !duration) {
+    return res.status(400).json({ error: 'Description and duration are required' });
   }
 
-  exercise.push(formData);
+  const date = req.body.date ? new Date(req.body.date) : new Date();
 
-  return res.json( user, {
+  const newExercise = {
     description: description,
-    duration: duration,
-    date: Date.now()
-  });
+    duration: parseInt(duration),
+    date: date.toString()
+  };
+
+  // Find the user by ID and add the new exercise to their exercises array
+  const userIndex = users.findIndex(user => user._id === userId);
+
+  if (userIndex === -1) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  users[userIndex].exercises.push(newExercise);
+
+  return res.json(users[userIndex]);
 });
-
-
 
 
 const listener = app.listen(process.env.PORT || 3000, () => {
