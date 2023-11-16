@@ -40,7 +40,7 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/users/:_id/exercises', (req, res) => {
   const userId = req.params._id;
-  const { description, duration } = req.bosy;
+  const { description, duration } = req.body;
 
   if (!description || !duration) {
     return res.status(400).json({ error: 'Description and duration are required' });
@@ -65,6 +65,8 @@ app.post('/api/users/:_id/exercises', (req, res) => {
 
   return res.json(users[userIndex]);
 });
+
+
 
 
 const listener = app.listen(process.env.PORT || 3000, () => {
