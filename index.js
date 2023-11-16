@@ -34,10 +34,7 @@ users.push(newUser);
 });
 
 app.get('/api/users', (req, res) => {
-  return res.json({
-    username: username,
-    id: _id
-  });
+  return res.json(users);
 });
 
 
