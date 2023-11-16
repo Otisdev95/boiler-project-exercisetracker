@@ -7,6 +7,8 @@ require('dotenv').config()
 app.use(cors())
 app.use(express.static('public'))
 app.use(bodyPaser.urlencoded({ extended: true }))
+app.use(bodyPaser.json());
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
@@ -23,7 +25,8 @@ app.post('/api/users', (req, res) => {
  
   const newUser = {
     username: username,
-    _id: generateUserId()
+    _id: generateUserId(),
+    exercises: []
   }
 
 users.push(newUser);
