@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
-const users = [];
+const user = [];
 
 app.post('/api/users', (req, res) => {
   const username = req.body.username;
@@ -21,8 +21,7 @@ app.post('/api/users', (req, res) => {
     _id: generateUserId()
   }
 
-users.push(newUser);
-
+user.push(newUser);
 
   return res.json({
     username: newUser.username,
