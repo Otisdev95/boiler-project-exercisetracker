@@ -11,7 +11,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
-const user = [];
+const users = [];
+
+function generateUserId() {
+  return Math.random().toString(36).substring(2, 10);
+}
 
 app.post('/api/users', (req, res) => {
   const username = req.body.username;
@@ -21,7 +25,7 @@ app.post('/api/users', (req, res) => {
     _id: generateUserId()
   }
 
-user.push(newUser);
+users.push(newUser);
 
   return res.json({
     username: newUser.username,
@@ -29,6 +33,9 @@ user.push(newUser);
   });
 });
 
+app.get('/api/users', (req, res) => {
+  return res.json({ users })
+});
 
 
 
@@ -36,7 +43,3 @@ user.push(newUser);
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
-
-function generateUserId() {
-  return Math.random().toString(36).substring(2, 10);
-}
