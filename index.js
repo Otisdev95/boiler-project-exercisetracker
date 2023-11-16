@@ -65,7 +65,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
 
   users[userIndex].exercises.push(newExercise);
 
-  return res.json(users);
+  return res.json(users[userIndex]);
 });
 
 
