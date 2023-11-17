@@ -5,9 +5,7 @@ const cors = require('cors')
 require('dotenv').config()
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, () => {
-  console.log('DB Connected');
-});
+mongoose.connect(process.env.MONGO_URI);
 
 const userSchema = mongoose.Schema({
   username: { type: String, unique: true }
