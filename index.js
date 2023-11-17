@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/users', async (req, res) =>{
-  const users = await User.find({}.select("_id username"));
+  const users = await User.find({}).select("_id username");
   if (!users) {
     res.send("No user found");
   } else {
