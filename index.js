@@ -26,7 +26,7 @@ const Exercise = mongoose.model("Exercise", ExerciseSchema);
 
 app.use(cors())
 app.use(express.static('public'))
-app.use(urlencoded.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 // app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json());
 
