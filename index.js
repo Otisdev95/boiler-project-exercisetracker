@@ -45,6 +45,36 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
+app.post('/api/users/:_id/exercises', (req, res) =>{
+  const id = req.params._id;
+  const { description, duration, date } = req.body;
+
+  try{
+    const user = await User.findById(id);
+    if (!user) {
+      res.send('Could not find user');
+    } else {
+      const exerciseObj = new Exercise({
+        user_id: user._id,
+        description,
+        duration,
+        date: date ? new Date(date) : new Date()
+      });
+      const exercise = await exerciseObj.save();
+      res.json({
+        _id: user._id,
+        username: user.username,
+        description: exercise.description,
+        duration: exerxise.duration,
+        date: new Date(exercise.date).toDateString()
+      })
+    }
+  } catch (err) {
+    console.log(err);
+    res.json('There was an error saving the exercise')
+  }
+})
+
 // const users = [];
 
 // function generateUserId() {
