@@ -32,6 +32,15 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
+app.get('/api/users', async (req, res) =>{
+  const users = await User.find({}.select("_id username"));
+  if (!users) {
+    res.send("No user found");
+  } else {
+    res.json(users);
+  }
+});
+
 app.post('/api/users', async (req, res) => {
   const userObj = new User({
     username: req.body.username
