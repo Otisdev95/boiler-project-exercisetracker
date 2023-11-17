@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
   username: { type: String, unique: true }
 });
 
-const User = mongosose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 const ExerciseSchema = new mongoose.Schema({
   user_id: { type: String, required: true },
