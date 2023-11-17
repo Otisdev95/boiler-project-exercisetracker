@@ -45,7 +45,7 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
-app.post('/api/users/:_id/exercises', (req, res) =>{
+app.post('/api/users/:_id/exercises', async (req, res) =>{
   const id = req.params._id;
   const { description, duration, date } = req.body;
 
